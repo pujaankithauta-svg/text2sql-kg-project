@@ -1,0 +1,438 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/pujaa/ontologies/2026/7/untitled-ontology-3/"
+     xml:base="http://www.semanticweb.org/pujaa/ontologies/2026/7/untitled-ontology-3/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/">
+    <owl:Ontology rdf:about="http://enterprise-lakehouse.org/ontology">
+        <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#belongsToCategory -->
+
+    <owl:ObjectProperty rdf:about="http://enterprise-lakehouse.org/ontology#belongsToCategory">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#Product"/>
+        <rdfs:range rdf:resource="http://enterprise-lakehouse.org/ontology#Product"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#forProduct -->
+
+    <owl:ObjectProperty rdf:about="http://enterprise-lakehouse.org/ontology#forProduct">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#OrderLineItem"/>
+        <rdfs:range rdf:resource="http://enterprise-lakehouse.org/ontology#Product"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#fulfilledByStore -->
+
+    <owl:ObjectProperty rdf:about="http://enterprise-lakehouse.org/ontology#fulfilledByStore">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#Order"/>
+        <rdfs:range rdf:resource="http://enterprise-lakehouse.org/ontology#Store"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#hasLineItem -->
+
+    <owl:ObjectProperty rdf:about="http://enterprise-lakehouse.org/ontology#hasLineItem">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#Order"/>
+        <rdfs:range rdf:resource="http://enterprise-lakehouse.org/ontology#OrderLineItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#isPlacedBy -->
+
+    <owl:ObjectProperty rdf:about="http://enterprise-lakehouse.org/ontology#isPlacedBy">
+        <owl:inverseOf rdf:resource="http://enterprise-lakehouse.org/ontology#placesOrder"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#placesOrder -->
+
+    <owl:ObjectProperty rdf:about="http://enterprise-lakehouse.org/ontology#placesOrder">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#Customer"/>
+        <rdfs:range rdf:resource="http://enterprise-lakehouse.org/ontology#Order"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#suppliedBy -->
+
+    <owl:ObjectProperty rdf:about="http://enterprise-lakehouse.org/ontology#suppliedBy">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#Product"/>
+        <rdfs:range rdf:resource="http://enterprise-lakehouse.org/ontology#Supplier"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#hasChurnStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://enterprise-lakehouse.org/ontology#hasChurnStatus">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#Customer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#hasCustomerId -->
+
+    <owl:DatatypeProperty rdf:about="http://enterprise-lakehouse.org/ontology#hasCustomerId">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#Customer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#hasLineRevenue -->
+
+    <owl:DatatypeProperty rdf:about="http://enterprise-lakehouse.org/ontology#hasLineRevenue">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#OrderLineItem"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#hasMarginPct -->
+
+    <owl:DatatypeProperty rdf:about="http://enterprise-lakehouse.org/ontology#hasMarginPct">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#hasOrderDate -->
+
+    <owl:DatatypeProperty rdf:about="http://enterprise-lakehouse.org/ontology#hasOrderDate">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#Order"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#hasOrderStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://enterprise-lakehouse.org/ontology#hasOrderStatus">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#Order"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#hasQuantity -->
+
+    <owl:DatatypeProperty rdf:about="http://enterprise-lakehouse.org/ontology#hasQuantity">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#OrderLineItem"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#hasSignupDate -->
+
+    <owl:DatatypeProperty rdf:about="http://enterprise-lakehouse.org/ontology#hasSignupDate">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#Customer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#hasUnitCost -->
+
+    <owl:DatatypeProperty rdf:about="http://enterprise-lakehouse.org/ontology#hasUnitCost">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#hasUnitPrice -->
+
+    <owl:DatatypeProperty rdf:about="http://enterprise-lakehouse.org/ontology#hasUnitPrice">
+        <rdfs:domain rdf:resource="http://enterprise-lakehouse.org/ontology#Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Accessories -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Accessories">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Electronics"/>
+        <skos:prefLabel>Accessories</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Apparel -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Apparel">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Product"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Beverages -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Beverages">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Grocery"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#ConsumerCustomer -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#ConsumerCustomer">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Customer"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://enterprise-lakehouse.org/ontology#Customer"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://enterprise-lakehouse.org/ontology#hasChurnStatus"/>
+                        <owl:hasValue>Active</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Customer -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Customer">
+        <rdfs:comment>An individual or organization that has placed one or more orders in the enterprise system.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Decor -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Decor">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Home"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Electronics -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Electronics">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Product"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#EnterpriseCustomer -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#EnterpriseCustomer">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Customer"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://enterprise-lakehouse.org/ontology#Customer"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://enterprise-lakehouse.org/ontology#hasChurnStatus"/>
+                        <owl:hasValue>Active</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Footwear -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Footwear">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Apparel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#FreshProduce -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#FreshProduce">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Grocery"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Furniture -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Furniture">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Home"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Grocery -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Grocery">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Product"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Home -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Home">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Product"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Kitchen -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Kitchen">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Home"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Laptops -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Laptops">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Electronics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Menswear -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Menswear">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Apparel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Order -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Order">
+        <rdfs:comment>A single purchase transaction placed by a customer at a specific store on a specific date.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#OrderLineItem -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#OrderLineItem">
+        <rdfs:comment>A single product line within an order, capturing quantity, price at time of sale, and discount applied.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Phones -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Phones">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Electronics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Product -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Product">
+        <rdfs:comment>A sellable item offered by the business, belonging to a category and subcategory, sourced from a supplier.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#SMBCustomer -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#SMBCustomer">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Customer"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://enterprise-lakehouse.org/ontology#Customer"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://enterprise-lakehouse.org/ontology#hasChurnStatus"/>
+                        <owl:hasValue>Active</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Snacks -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Snacks">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Grocery"/>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Store -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Store">
+        <rdfs:comment>A sales channel or physical/online location through which orders are fulfilled.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Supplier -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Supplier">
+        <rdfs:comment>An external vendor that provides products to the business.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://enterprise-lakehouse.org/ontology#Womenswear -->
+
+    <owl:Class rdf:about="http://enterprise-lakehouse.org/ontology#Womenswear">
+        <rdfs:subClassOf rdf:resource="http://enterprise-lakehouse.org/ontology#Apparel"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+

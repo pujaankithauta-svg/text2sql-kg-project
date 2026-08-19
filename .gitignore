@@ -5,4 +5,4 @@ __pycache__/
 .vscode/
 data/raw/*.csv
 *.log
-tests/eval/*_results.csv
+tests/eval/kg_v2_results.csv

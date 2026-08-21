@@ -149,19 +149,74 @@ def print_summary(results, agent_name="baseline"):
             print(f"  [{r['id']}] {r['question']} -> {r['status']}")
 
 
+# if __name__ == "__main__":
+#     agent_to_run = sys.argv[1] if len(sys.argv) > 1 else "baseline"
+#     if agent_to_run not in ("baseline", "kg"):
+#         sys.exit(
+#             f"Unknown agent '{agent_to_run}'. Must be exactly 'baseline' or 'kg' "
+#             f"(pass a second argument for a run label, e.g. 'kg v4')."
+#         )
+#     run_label = sys.argv[2] if len(sys.argv) > 2 else agent_to_run
+
+#     results = run_evaluation(agent_to_run)
+#     print_summary(results, run_label)
+
+#     df = pd.DataFrame(results)
+#     output_path = Path(__file__).resolve().parent / f"{run_label}_results.csv"
+#     df.to_csv(output_path, index=False)
+#     print(f"\nResults saved to {output_path}")
+
+def run_multi_trial(agent_name="baseline", n_trials=3):
+    """
+    Runs the full evaluation n_trials times and reports mean/range accuracy,
+    since LLM outputs aren't perfectly deterministic even at temperature=0.
+    """
+    all_trial_results = []
+    overall_accuracies = []
+
+    for trial in range(1, n_trials + 1):
+        print(f"\n\n{'#'*60}")
+        print(f"# TRIAL {trial}/{n_trials} — agent: {agent_name}")
+        print(f"{'#'*60}")
+
+        results = run_evaluation(agent_name)
+        correct = sum(1 for r in results if r["correct"])
+        total = len(results)
+        accuracy = 100 * correct / total
+
+        overall_accuracies.append(accuracy)
+        for r in results:
+            r["trial"] = trial
+        all_trial_results.extend(results)
+
+        print(f"\nTrial {trial} accuracy: {correct}/{total} ({accuracy:.1f}%)")
+
+    df = pd.DataFrame(all_trial_results)
+    output_path = Path(__file__).resolve().parent / f"{agent_name}_multitrial_results.csv"
+    df.to_csv(output_path, index=False)
+
+    print(f"\n{'='*60}")
+    print(f"MULTI-TRIAL SUMMARY: {agent_name} ({n_trials} trials)")
+    print(f"{'='*60}")
+    print(f"Overall accuracy per trial: {[f'{a:.1f}%' for a in overall_accuracies]}")
+    print(f"Mean accuracy: {sum(overall_accuracies)/len(overall_accuracies):.1f}%")
+    print(f"Range: {min(overall_accuracies):.1f}% - {max(overall_accuracies):.1f}%")
+
+    print(f"\nPer-question pass rate across {n_trials} trials:")
+    for q in EVAL_QUESTIONS:
+        q_results = [r for r in all_trial_results if r["id"] == q["id"]]
+        passes = sum(1 for r in q_results if r["correct"])
+        consistency = "STABLE" if passes in (0, n_trials) else "FLAKY"
+        print(f"  [{q['id']}] ({q['difficulty']}) {passes}/{n_trials} passed -> {consistency}")
+
+    print(f"\nResults saved to {output_path}")
+    return overall_accuracies
+
+
 if __name__ == "__main__":
     agent_to_run = sys.argv[1] if len(sys.argv) > 1 else "baseline"
     if agent_to_run not in ("baseline", "kg"):
-        sys.exit(
-            f"Unknown agent '{agent_to_run}'. Must be exactly 'baseline' or 'kg' "
-            f"(pass a second argument for a run label, e.g. 'kg v4')."
-        )
-    run_label = sys.argv[2] if len(sys.argv) > 2 else agent_to_run
+        sys.exit(f"Unknown agent '{agent_to_run}'. Must be 'baseline' or 'kg'.")
+    n_trials = int(sys.argv[2]) if len(sys.argv) > 2 else 3
 
-    results = run_evaluation(agent_to_run)
-    print_summary(results, run_label)
-
-    df = pd.DataFrame(results)
-    output_path = Path(__file__).resolve().parent / f"{run_label}_results.csv"
-    df.to_csv(output_path, index=False)
-    print(f"\nResults saved to {output_path}")
+    run_multi_trial(agent_to_run, n_trials)
